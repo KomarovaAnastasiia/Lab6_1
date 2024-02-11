@@ -1,0 +1,57 @@
+#include <iostream>
+
+using namespace std;
+
+// Клас без віртуального успадкування
+class Base1 {
+private:
+    int data1;
+public:
+    Base1() : data1(0) {}
+    Base1(int d) : data1(d) {}
+    int getData1() const { return data1; }
+};
+
+class Derived1 : public Base1 {
+private:
+    int data2;
+public:
+    Derived1() : Base1(), data2(0) {}
+    Derived1(int d1, int d2) : Base1(d1), data2(d2) {}
+    int getData2() const { return data2; }
+};
+
+// Клас з віртуальним успадкуванням
+class Base2 {
+private:
+    int data1;
+public:
+    Base2() : data1(0) {}
+    Base2(int d) : data1(d) {}
+    int getData1() const { return data1; }
+    virtual void print() { cout << "Base2" << endl; }
+};
+
+class Derived2 : public Base2 {
+private:
+    int data2;
+public:
+    Derived2() : Base2(), data2(0) {}
+    Derived2(int d1, int d2) : Base2(d1), data2(d2) {}
+    int getData2() const { return data2; }
+    void print() override { cout << "Derived2" << endl; }
+};
+
+int main() {
+    Base1 b1;
+    Derived1 d1;
+    cout << "Size of Base1 object: " << sizeof(b1) << " bytes" << endl;
+    cout << "Size of Derived1 object: " << sizeof(d1) << " bytes" << endl;
+
+    Base2 b2;
+    Derived2 d2;
+    cout << "Size of Base2 object: " << sizeof(b2) << " bytes" << endl;
+    cout << "Size of Derived2 object: " << sizeof(d2) << " bytes" << endl;
+
+    return 0;
+}
